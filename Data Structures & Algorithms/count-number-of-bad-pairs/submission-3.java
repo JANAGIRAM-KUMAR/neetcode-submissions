@@ -1,0 +1,14 @@
+class Solution {
+    public long countBadPairs(int[] nums) {
+        int n = nums.length;
+        int pairs = (n*(n-1))/2;
+        int goodPair = 0;
+        Map<Integer, Integer> hm = new HashMap<>();
+        for(int i = 0; i < n; i++){
+            int curr = nums[i] - i;
+            if(hm.containsKey(curr)) goodPair += 1;
+            hm.put(curr, hm.getOrDefault(curr,0)+1);
+        }
+        return pairs - goodPair;
+    }
+}
